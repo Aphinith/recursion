@@ -12,27 +12,21 @@ var getElementsByClassName = function(className) {
 
   //create variable to hold results
   var matches = [];
-  //create function to run search
+
   var findMatches = function(node) {
-    //loop through node
-    _.each(node, function(val) {
-      if (className === val) {
-        console.log('this is test:', node)
+    _.each(node.classList, function(val1) {
+      if (val1 === className) {
+        matches.push(node);
       }
     })
-    
+    _.each(node.childNodes, function(val) {
+      findMatches(val);
+    })
   }
-  console.log("this is matches:", matches)
 
   findMatches(document.body)
+  // console.log("Andy's log", document.body.childNodes)
+  // console.log('this is matches:', matches)
   return matches;
 
-
-  // console.log("this is body:", document.body);
-  // //logging to see what element.childNodes is
-  // console.log('this is element.childNodes:', document.body.childNodes);
-  // //logging to see what element.classList is
-  // console.log('this is element.classList:', document.body.classList);
-  // //testing log to element.classList
-  // console.log('this is element.classList at index 1:', document.body.classList[1]);
 };
